@@ -1,94 +1,164 @@
-# Putting it All Together: Components and Props
+# JARVIS AI Assistant
 
-## Learning Goals
+A React-based AI assistant inspired by JARVIS. This app combines **chat, voice, command routing, notifications, and history tracking**, powered by **Oloma AI** or a local Ollama server. It also includes simple **Email, File, and System management** modules.
 
-- Create components that return JSX
-- Use props to make components dynamic
-- Transform lists of data into lists of components
+---
 
-## Overview
+## Features
 
-Now that you've learned how to work with components in React, it's time to build
-something and put those skills to use! Your goal for this lab is to make a
-_static site_ in React to practice building components, writing JSX, and passing
-down data as props.
+- Chat with AI using Oloma AI API (`gpt-4o-mini` or `gemma3:4b`)  
+- Voice commands using Web Speech API (speech recognition & synthesis)  
+- Command routing for emails, files, and system tasks  
+- History tracker for past commands  
+- Notifications system for alerts  
+- Configurable settings and preferences  
 
-We'll be creating a personal blog site, similar to
-[Dan Abramov's Overreacted](https://overreacted.io/):
+---
 
-![demo](https://curriculum-content.s3.amazonaws.com/phase-2/react-hooks-component-props-mini-project/demo.png)
+## Tech Stack
 
-There is some starter code available in `src/components/App.js`. There is also
-some data in `data/blog.js` that is being imported into `App` so you can pass it
-down to the components that need it.
+- **Frontend:** React, JavaScript, HTML, CSS  
+- **AI Backend:** Oloma AI API or local Ollama server  
+- **Browser APIs:**  
+  - SpeechRecognition for voice input  
+  - SpeechSynthesis for voice output  
 
-## Deliverables
+---
 
-Have a look at the components below and draw out a component hierarchy so you
-can determine how to pass data down as props.
+## Installation
 
-### Header
+1. Clone the repo:
 
-Make a `Header` component as a child of `App`. It should return:
+```bash
+git clone https://github.com/yourusername/jarvis-react.git
+cd jarvis-react
 
-- a `<header>` element with the following elements inside:
-  - an `<h1>` with the name of the blog, passed as a prop called `name`
+Install dependencies:
 
-### About
+npm install
 
-Make an `About` component as a child of `App`. It should return:
 
-- an `<aside>` element with the following elements inside:
-  - an `<img>` element, with the `src` set to an image passed as a prop called
-    `image`
-  - the `<img>` element should use this placeholder image as a _default value_
-    for the prop if no prop is passed in: "https://via.placeholder.com/215"
-  - the image should also be accessible! Give it an `alt` attribute of "blog
-    logo"
-  - a `<p>` element, with the text for the blog passed in as a prop called
-    `about`
+Configure API Key:
 
-### ArticleList
+Create a .env file based on .env.example
 
-Make an `ArticleList` component as a child of `App`. It should return:
+Add your OpenAI / Oloma API key:
 
-- a `<main>` element with the following components inside:
-  - an array of `Article` components (one component for each of the `posts`
-    passed down as props to `ArticleList`)
-  - make sure to assign a unique `key` attribute to each `Article`
+VITE_OPENAI_KEY=your_api_key_here
 
-### Article
 
-Make an `Article` component as a child of `ArticleList`. It should return:
+Start the app:
 
-- an `<article>` element, with the following elements inside:
-  - an `<h3>` element displaying the title of the article, passed as a prop
-    called `title`
-  - a `<small>` element displaying the date of the article, passed as a prop
-    called `date`
-    - a _default value_ of "January 1, 1970" should be used if no date is passed
-      as a prop
-  - a `<p>` element displaying the preview of the article, passed as a prop
-    called `preview`
+npm run dev
 
-### Bonus Feature: 'Minutes to Read'
 
-You'll notice in the original [Overreacted](https://overreacted.io/) site,
-there's a 'minutes to read' indicator next to each article.
+Open http://localhost:5173
+ in your browser.
 
-If the article takes less than 30 minutes to read:
+Usage
 
-- For every 5 minutes (rounded up to the nearest 5), display a coffee cup emoji.
-  For example, if the article takes 3 minutes to read, you should display "☕️ 3
-  min read". If the article takes 7 minute, you should display "☕️☕️ 7 min
-  read".
+Mode Selection:
 
-If the article takes 30 minutes or longer to read:
+Chat → normal AI conversation
 
-- For every 10 minutes (rounded up to the nearest 10), display a bento box
-  emoji. For example, if the article takes 35 minutes to read, you should
-  display "🍱🍱🍱🍱 35 min read". If the article takes 61 minutes to read, you
-  should display "🍱🍱🍱🍱🍱🍱🍱 61 min read".
+Command → route instructions (emails, files, system)
 
-There aren't tests for this feature, so you'll have to rely on running the code
-in the browser to see if your implementation works!
+Voice → speak to JARVIS
+
+Quick Actions: Check email, list files, or system status using buttons.
+
+Command prefix: Use / for command mode, e.g., /check emails.
+
+Settings: Enable/disable voice assistant, configure preferences.
+
+Commands & Managers
+
+Email Commands:
+
+send email → Sends an email
+
+check emails → Shows inbox summary
+
+delete email → Deletes spam or selected emails
+
+File Commands:
+
+list files → Shows all files in a directory
+
+search files → Search for specific files
+
+create file → Creates a new file
+
+System Commands:
+
+system status → Shows CPU, memory, disk, network, uptime
+
+Help Command:
+
+/help → Lists available commands
+
+Task routing is handled by TaskRouter.js, which calls the respective manager.
+
+Voice Interaction
+
+Click Voice button to start voice mode
+
+Speak commands or chat → JARVIS converts speech to text
+
+JARVIS responds vocally using SpeechSynthesis
+
+Auto-listening ensures continuous interaction
+
+Notifications & History
+
+Notifications.jsx: Displays alerts, new messages, and system notifications
+
+History.jsx: Tracks past commands with timestamp and delete/clear functionality
+
+Settings & Preferences
+
+Enable/disable voice assistant
+
+Manage assistant behavior using React Context (AssistantContext and TaskContext)
+
+Preferences are global and persist across components
+
+Project Structure
+src/
+├── components/
+│   ├── ChatWindow.jsx
+│   ├── JARVISCore.jsx
+│   ├── VoiceFeedback.jsx
+│   ├── History.jsx
+│   ├── Notifications.jsx
+│   ├── Preferences.jsx
+│   └── App.jsx
+├── contexts/
+│   ├── AssistantContext.jsx
+│   └── TaskContext.jsx
+├── helpers/
+│   ├── CommandAnalyzer.jsx
+│   └── TaskRouter.jsx
+├── managers/
+│   ├── EmailManager.js
+│   ├── FileManager.js
+│   └── SystemStatus.js
+├── styles/
+│   └── app.css
+└── main.jsx
+
+Contributing
+
+Fork the repo
+
+Create a branch (git checkout -b feature/new-feature)
+
+Commit your changes (git commit -m "Add feature")
+
+Push to branch (git push origin feature/new-feature)
+
+Open a pull request
+
+License
+
+This project is MIT licensed. See LICENSE for details.
