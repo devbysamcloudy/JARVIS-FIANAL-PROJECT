@@ -1,20 +1,20 @@
 import { useState } from "react";
 
-import ChatWindow from "./components/communication/ChatWindow";
-import VoiceFeedback from "./components/communication/VoiceFeedback";
-import Notifications from "./components/communication/Notifications";
+import ChatWindow from "./src/components/communication/ChatWindow";
+import VoiceFeedback from "./src/components/communication/VoiceFeedback";
+import Notifications from "./src/components/communication/Notifications";
 
-import Home from "./components/memory/Home.jsx";
-import History from "./components/memory/History.jsx";
-import JARVISCore from "./components/core/JarvisCore.jsx";
-import SettingsPage from "./components/memory/SettingsPage.jsx";
-import Tasks from "./components/core/TaskRouter.jsx";
-import Heartbeat from "./components/core/Heartbeat.jsx";
+import Home from "./src/components/memory/Home.jsx";
+import History from "./src/components/memory/History.jsx";
+import JARVISCore from "./src/components/core/JarvisCore.jsx";
+import SettingsPage from "./src/components/memory/SettingsPage.jsx";
+import Tasks from "./src/components/core/TaskRouter.jsx";
+import Heartbeat from "./src/components/core/Heartbeat.jsx";
 
-import "./components/styles/variables.css";
-import "./components/styles/animations.css";
-import "./components/styles/App.css";
-import "./components/styles/jarvis.css";
+import "./src/components/styles/variables.css";
+import "./src/components/styles/animations.css";
+import "./src/components/styles/App.css";
+import "./src/components/styles/jarvis.css";
 
 
 
