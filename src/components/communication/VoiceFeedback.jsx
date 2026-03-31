@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 // Oloma AI Config (hardcoded for frontend testing)
 // ==========================
 // These are normally in .env, but in plain frontend React, process.env is not defined.
-const OPENAI_API_KEY = "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";
+const OPENAI_API_KEY = "YOUR API KEY";
 const BASE_URL = "https://api.olama.ai/v1";
 const MODEL = "gpt-4o-mini";
 const MAX_TOKENS = 2048;
